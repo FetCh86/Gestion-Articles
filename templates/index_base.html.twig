@@ -6,12 +6,29 @@
         <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.css">
         {% block stylesheets %}{% endblock %}
         <style>
-            form {
-                margin: 30px;
+            label, .col-form-label {
+                font-size: 10px;
             }
 
-            h3, h5 {
-                margin-left: 20px;
+            .form-group select, .form-group input {
+                height: 30px !important;
+                margin: 0px !important;
+            }
+
+            label.required:before {
+                content: "*";
+            }
+
+            #logform label {
+                display: none;
+            }
+
+            #logform .form-group {
+                display: inline-block !important;
+            }
+
+            #logform #login_user_submit {
+                border: solid 1px;
             }
 
             footer {
@@ -22,7 +39,7 @@
     </head>
     <body>
 
-    
+    <div class="container-fluid bg-primary">
     <header class="navbar navbar-expand-md navbar-dark bg-primary">
 
             <a href="{{ path('home') }}" class="navbar-brand">
@@ -47,12 +64,19 @@
                   <li class="nav-item"><a href="" class="nav-link">Notre politique clientèle</a></li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="" class="nav-link"><i class="fas fa-user-plus"></i>Enregistrement</a></li>
-                    <li class="nav-item"><a href="" class="nav-link"><i class="fas fa-sign-in-alt"></i>Connexion</a></li>
+                    <div id="logform" class="">
+                     {{ form_start(login_form) }}
+                     {{ form_row(login_form.email) }} 
+                     {{ form_row(login_form.password) }} 
+                     {{ form_end(login_form) }} 
+                     </div>
+                    <!--<li class="nav-item"><a href="" class="nav-link"><i class="fas fa-user-plus"></i>Enregistrement</a></li>
+                    <li class="nav-item"><a href="" class="nav-link"><i class="fas fa-sign-in-alt"></i>Connexion</a></li>-->
                 </ul>
             </div>
 
     </header>
+    </div>
 
     {% for label, messages in app.flashes %}
         {% for message in messages %}
