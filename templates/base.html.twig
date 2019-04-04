@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css">
+        {% block stylesheets %}{% endblock %}
+        <style>
+            form {
+                margin: 30px;
+            }
+
+            h3, h5 {
+                margin-left: 20px;
+            }
+
+            footer {
+                opacity: 0.9;
+                z-index: 9999;
+            }
+        </style>
+    </head>
+    <body>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }} alert alert-dismissible alert-primary">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+
+    <footer class="navbar fixed-bottom ms-auto bg-primary"> YouFlix </footer>
+    </body>
+</html>

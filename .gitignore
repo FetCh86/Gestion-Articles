@@ -1,0 +1,10 @@
+
+###> symfony/framework-bundle ###
+/.vscode
+/.idea
+/.env
+/public/bundles/
+/docker/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
