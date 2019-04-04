@@ -35,6 +35,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
             $entityManager->flush();
@@ -55,6 +56,21 @@ class ArticleController extends AbstractController
     {
         return $this->render('article/show.html.twig', [
             'article' => $article,
+        ]);
+    }
+
+    /**
+     * @Route("/user/{id}", name="article_user", methods={"GET"})
+     * @param $id
+     * @return Response
+     */
+    public function articleUser($id): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $articles = $em->getRepository(Article::class)->findBy(['user' => $id]);
+
+        return $this->render('article/article_user.html.twig',[
+            'articles' => $articles
         ]);
     }
 

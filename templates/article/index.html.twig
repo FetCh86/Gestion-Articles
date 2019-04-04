@@ -15,6 +15,7 @@
                 <th>Tag</th>
                 <th>Created_at</th>
                 <th>actions</th>
+                <th>user</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,9 @@
                 <td>
                     <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
                     <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                </td>
+                <td>
+                    <a href="{{ path('article_user',{'id': article.user.id}) }}">article user</a>
                 </td>
             </tr>
         {% else %}
