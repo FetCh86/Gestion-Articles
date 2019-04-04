@@ -1,6 +1,6 @@
 security:
     encoders:
-        App\Entity\Utilisateur:
+        App\Entity\User:
             algorithm:
                 bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -11,11 +11,11 @@ security:
                 providers: [db_username, db_email]
         db_username:
             entity:
-                class: App\Entity\Utilisateur
-                property: nickname
+                class: App\Entity\User
+                property: firstname
         db_email:
             entity:
-                class: App\Entity\Utilisateur
+                class: App\Entity\User
                 property: email
     firewalls:
         dev:
@@ -27,11 +27,13 @@ security:
             provider: multiple_provider
 
             form_login:
-                login_path: secur_connexion
-                check_path: secur_connexion
+                login_path: login
+                check_path: login
+                username_parameter: "login_user[email]"
+                password_parameter: "login_user[password]"
 
             logout:
-                path: /deconnexion
+                path: /logout
                 target: /
 
 
