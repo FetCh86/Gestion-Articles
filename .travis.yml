@@ -1,10 +1,7 @@
 language: php
  
 php: 7.1
- 
-before_script:
-    - php -v
- 
+  
 notifications:
     email:
         recipients:
