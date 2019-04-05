@@ -8,3 +8,5 @@ notifications:
             - example@example.com
         on_success: never
         on_failure: always
+
+script: echo("hello");
