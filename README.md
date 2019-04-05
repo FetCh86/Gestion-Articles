@@ -14,7 +14,7 @@ docker-compose up -d
 docker-compose exec web composer install
 ```
 
-Open a web-browser and type 'localhost'. (Make sure there is nothing listening on port *80 to avoid conflits)
+Open a web-browser and type 'localhost:9000'. (Make sure there is nothing listening on port *9000 to avoid conflits)
 
 
 ### More :
