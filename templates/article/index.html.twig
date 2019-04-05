@@ -11,11 +11,12 @@
 
         {% for article in articles %}
 
-            <a href="{{ path('article_edit', { id: article.id }) }}">
+            <a href="{{ path('article_show', { id: article.id }) }}">
                 <div class="col-sm-4">
                     <img class="img-fluid" src="{{ article.picture }}" alt="{{ article.title }}_img"/>
                     <h5>{{ article.title }}</h5>
-                    <p>{{ article.tag }}</p>  
+                    <p>{{ article.tag }}</p>
+                    <a href="{{ path('article_user',{'id': article.user.id}) }}">{{ article.user.firstname }}</a>
                 </div>
             </a>
 

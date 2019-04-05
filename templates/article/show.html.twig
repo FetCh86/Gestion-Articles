@@ -3,55 +3,48 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+    <div class="container">
+        <h1>Article</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ article.content }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ article.picture }}</td>
-            </tr>
-            <tr>
-                <th>Tag</th>
-                <td>{{ article.tag }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('article_index') }}">back to list</a>
+        <h2>{{ article.title }}</h2>
 
-    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+        <img src="{{ article.picture }}">
 
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    {% for comment in comments %}
+        <p>{{ article.tag }}</p>        <p>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</p>
 
-        <p>{{ comment.content }}</p>
-        <br>
-        <p>{{ comment.user }}</p>
 
-    {% endfor %}
 
-    {{ include('comment/_form.html.twig') }}
-    {% endif %}
+        <p>{{ article.content }}</p>
 
-    {% if article.user == app.user %}
-    {{ include('article/_delete_form.html.twig') }}
-    {% endif %}
+
+        <a href="{{ path('article_index') }}">back to list</a>
+
+        {% if app.user %}
+        {% if article.user.id == app.user.id %}
+            <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+        {% endif %}
+        {% endif %}
+
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% for comment in comments %}
+
+                <p>{{ comment.content }}</p>
+                <br>
+                <p>{{ comment.user }}</p>
+
+            {% endfor %}
+
+            {{ include('comment/_form.html.twig') }}
+            <button class="btn">{{ button_label|default('Save') }}</button>
+
+        {% endif %}
+
+        {% if article.user == app.user %}
+            {{ include('article/_delete_form.html.twig') }}
+        {% endif %}
+    </div>
+
 
 {% endblock %}

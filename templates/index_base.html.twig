@@ -36,6 +36,10 @@
                 z-index: 9999;
             }
         </style>
+        <script
+                src="http://code.jquery.com/jquery-1.12.4.min.js"
+                integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+                crossorigin="anonymous"></script>
     </head>
     <body>
 
@@ -56,7 +60,7 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <div id="logform" class="">
-                     {{ form_start(login_form) }}
+                     {{ form_start(login_form,{'action': path('login')}) }}
                      {{ form_row(login_form.email) }} 
                      {{ form_row(login_form.password) }} 
                      {{ form_end(login_form) }} 
