@@ -20,13 +20,24 @@ class RegisterUserType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('email', EmailType::class)
-            ->add('birthday', BirthdayType::class)
+            ->add('birthday', BirthdayType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'placeholder' => "yyyy-mm-dd",
+                'attr' => ['min' => (date('Y')-23).date('-m-d'),
+                'max' => date("Y-m-d"),
+                ],
+                'invalid_message' => 'You need to have %age%yo to register!',
+                'invalid_message_parameters' => ['%age%' => 23]
+            ])
             ->add('password',RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options' => array('label'=> 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
             ))
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'Register'
+            ])
         ;
     }
 

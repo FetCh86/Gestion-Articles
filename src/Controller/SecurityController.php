@@ -16,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Doctrine\ORM\EntityManager;
 
 class SecurityController extends AbstractController
 {
@@ -68,7 +69,30 @@ class SecurityController extends AbstractController
             'form' => $form->createView()
         ]);
 
-    }/**
+    }
+
+    /**
+     * @Route("/", name="home")
+     * 
+     */
+    public function home()
+    {
+        //Date inferieur à 23ans
+        //dd(date('d-m-').(date('Y')-23));
+
+        $user = new User();
+
+        //Creation formulaire
+        $form_register = $this->createForm(RegisterUserType::class, $user);   
+        $form_login = $this->createForm(LoginUserType::class, $user);   
+
+        return $this->render('home/index.html.twig', [
+            "register_form" => $form_register->createView(),
+            "login_form" => $form_login->createView()
+        ]);
+    }
+    
+    /**
      * @Route("/admin", name="admin")
      */
     public function admin(UserRepository $userRepository)
