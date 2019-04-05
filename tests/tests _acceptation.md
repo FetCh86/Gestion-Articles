@@ -62,7 +62,7 @@ Test 8 : Suppression d'un article
 Test 9 : Création d'un article
 - Cliquer sur le lien "Créer un article"
 - Le formulaire de création s'affiche
-- Entrer le titre, le contenu et la catégorie de l'article à créer, puis valider
+- Entrer le titre, le contenu, la catégorie de l'article à créer, et éventuellement une image illustrative, puis valider
 - La page "Mes articles" s'affiche, avec en son sein le nouvel article créé
 
 Test 10 : Modification des infos de son profil utilisateur
