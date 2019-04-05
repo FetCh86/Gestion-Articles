@@ -3,7 +3,7 @@ version: "3"
 services:
 
   database:
-      image: mysql:5.7
+      image: mariadb:10.3
       volumes:
           - ./docker/database:/var/lib/mysql
       environment:
