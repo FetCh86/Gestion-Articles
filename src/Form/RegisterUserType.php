@@ -24,8 +24,7 @@ class RegisterUserType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
                 'placeholder' => "yyyy-mm-dd",
-                'attr' => ['min' => (date('Y')-23).date('-m-d'),
-                'max' => date("Y-m-d"),
+                'attr' => ['max' => (date('Y')-23).date('-m-d')
                 ],
                 'invalid_message' => 'You need to have %age%yo to register!',
                 'invalid_message_parameters' => ['%age%' => 23]

@@ -3,14 +3,26 @@
 {% block title %}Article index{% endblock %}
 
 {% block body %}
-        {% for article in articles %}
-            <h2> {{ article.title }}</h2><br>
-            <img src="{{ article.picture }}"><br>
-            <p>{{ article.content }}</p><br>
-            <h4>{{ article.tag }}</h4>
+
+    <div class="container">
+
+        <div class="row">
+
+            {% for article in articles %}
+
+                <a href="{{ path('article_show', { id: article.id }) }}">
+                    <div class="col-sm-4">
+                        <img class="img-fluid" src="{{ article.picture }}" alt="{{ article.title }}_img"/>
+                        <h5>{{ article.title }}</h5>
+                        <p>{{ article.tag }}</p>
+                        <a href="{{ path('article_user',{'id': article.user.id}) }}">{{ article.user.firstname }}</a>
+                    </div>
+                </a>
+
+            {% endfor %}
 
 
-        {% else %}
-                <p>no records found</p>
-        {% endfor %}
+        </div>
+
+    </div>
 {% endblock %}
