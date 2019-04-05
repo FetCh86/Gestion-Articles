@@ -4,8 +4,8 @@ Test 1 : Vérification des données d'enregistrement
 - Cliquer sur le lien de la page d'enregistrement
 - Le formulaire d'enregistrement s'affiche
 - Entrer les informations de l'utilisateur à enregistrer dans le formulaire puis valider
-- Si le format de toutes les données est correct : redirection vers la page de login avec un message indiquant que les données ont été postées avec succès
-- Si le format d'au moins l'une des données est incorrect, nouvelle invitation à saisir avec message explicatif d'erreur
+- Si le format de toutes les données est correct et si la date de naissance traduit un âge d'au moins 23 ans : redirection vers la page de login avec un message indiquant que les données ont été postées avec succès
+- Si le format d'au moins l'une des données est incorrect ou si la date de naissance traduit un âge inférieur à 23 ans, nouvelle invitation à saisir avec message explicatif d'erreur
 
 Test 2 : Authentification
 - Cliquer sur le lien de la page d'enregistrement 
@@ -45,9 +45,9 @@ Test 7 : Modification d'un article
 - Cliquer sur la card correspondant à l'article
 - L'article s'affiche avec son contenu sur une nouvelle page
 - Cliquer sur le bouton "Modifier"
-- Une page s'affiche avec un formulaire dans lequel sont intégrées les données existantes de l'article
-- Modifier les données de l'article
-- L'article actualisé s'affche sur une nouvelle page
+- Une page s'affiche avec un formulaire dans lequel figurent les données existantes de l'article
+- Modifier les données de l'article puis valider
+- L'article actualisé s'affiche sur une nouvelle page
 
 Test 8 : Suppression d'un article
 - Cliquer sur le lien "Mes articles"
@@ -65,6 +65,12 @@ Test 9 : Création d'un article
 - Entrer le titre, le contenu et la catégorie de l'article à créer, puis valider
 - La page "Mes articles" s'affiche, avec en son sein le nouvel article créé
 
-
+Test 10 : Modification des infos de son profil utilisateur
+- Cliquer sur le lien "Mon profil"
+- Une page s'affiche avec les données du profil
+- Cliquer sur le bouton "Modifier" 
+- Une page s'affiche avec un formulaire dans lequel figurent les données existantes du profil
+- Modifier les données du profil puis valider
+- La page de profil s'affiche avec les données actualisées
 
 ** Admin user
