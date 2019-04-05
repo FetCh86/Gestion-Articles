@@ -1,0 +1,7 @@
+
+App\Entity\Article:
+  article_{1..50}:
+    title: <sentence()>
+    content: <paragraph()>
+    picture: https://picsum.photos/200/300/?random
+    createdAt: <dateTimeThisYear()>
