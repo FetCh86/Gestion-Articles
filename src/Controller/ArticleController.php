@@ -65,6 +65,7 @@ class ArticleController extends AbstractController
         $comment_form->handleRequest($request);
 
         if ($comment_form->isSubmitted() && $comment_form->isValid()) {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
             $comment->setUser($this->getUser());
             $comment->setArticle($article);
             $em->persist($comment);

@@ -53,12 +53,15 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
-        if ($user->getId() == $this->getUser()->getId()){
-            return $this->render('user/show.html.twig', [
-                'user' => $user,
-            ]);
+
+        if ($this->getUser()){
+            if ($user->getId() == $this->getUser()->getId()){
+                return $this->render('user/show.html.twig', [
+                    'user' => $user,
+                ]);
+            }
         }
-        $this->addFlash('alert', 'Désolé mais vous ne pouvez pas modifié cette video!');
+        $this->addFlash('alert', 'Désolé mais vous ne pouvez pas allez voir ce profile!');
         return $this->redirectToRoute('user_index');
 
     }
@@ -68,21 +71,28 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user): Response
     {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+        if ($this->getUser()){
+            if ($user->getId() == $this->getUser()->getId()){
+                $form = $this->createForm(UserType::class, $user);
+                $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_index', [
-                'id' => $user->getId(),
-            ]);
+                    return $this->redirectToRoute('user_index', [
+                        'id' => $user->getId(),
+                    ]);
+                }
+
+                return $this->render('user/edit.html.twig', [
+                    'user' => $user,
+                    'form' => $form->createView(),
+                ]);
+            }
         }
+        $this->addFlash('alert', 'Désolé mais vous ne pouvez pas modifier ce profile!');
+        return $this->redirectToRoute('user_index');
 
-        return $this->render('user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**

@@ -49,7 +49,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/espace_videos, roles: ROLE_USER }
+        - { path: ^/user_index, roles: ROLE_USER }
         #- { path: ^/compte, roles: ROLE_USER }
         #- { path: ^/ajout_video, roles: ROLE_USER }
         #- { path: ^/edition_video, roles: ROLE_USER }
