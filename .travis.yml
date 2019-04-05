@@ -1,0 +1,12 @@
+language: php
+ 
+php: 7.1
+  
+notifications:
+    email:
+        recipients:
+            - example@example.com
+        on_success: never
+        on_failure: always
+
+script: echo("hello");
