@@ -53,9 +53,14 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
-        return $this->render('user/show.html.twig', [
-            'user' => $user,
-        ]);
+        if ($user->getId() == $this->getUser()->getId()){
+            return $this->render('user/show.html.twig', [
+                'user' => $user,
+            ]);
+        }
+        $this->addFlash('alert', 'Désolé mais vous ne pouvez pas modifié cette video!');
+        return $this->redirectToRoute('user_index');
+
     }
 
     /**

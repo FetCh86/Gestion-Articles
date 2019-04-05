@@ -38,5 +38,20 @@
 
     <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
 
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% for comment in comments %}
+
+        <p>{{ comment.content }}</p>
+        <br>
+        <p>{{ comment.user }}</p>
+
+    {% endfor %}
+
+    {{ include('comment/_form.html.twig') }}
+    {% endif %}
+
+    {% if article.user == app.user %}
     {{ include('article/_delete_form.html.twig') }}
+    {% endif %}
+
 {% endblock %}
